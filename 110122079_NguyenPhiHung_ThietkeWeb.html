@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phi Hung Fashion Shoe Store</title>
+    <style>
+	
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+		}
+			
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center ;
+        }
+		
+		nav {
+			background-color: #333;
+			overflow: hidden;
+		}
+  
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			float: left;
+		}
+
+		li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+
+		li a:hover {
+			background-color: #fff;
+			color: black;
+		}
+		.submenu {
+			display: none;
+			position: absolute;
+			background-color: #333;
+			z-index: 1;
+		}
+
+		.submenu li {
+			float: none;
+		}
+
+			.submenu li a {
+			padding: 12px 16px;
+		}
+
+		li:hover .submenu {
+			display: block;
+		}
+		
+		.logo {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.logo img {	
+			width: 100px;
+	 
+		}
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+		
+        .product {
+            width: 300px;
+            margin: 20px;
+            border: 2px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+		
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+		
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+		
+		img.resize {
+			width:200px;
+			height:40px;
+		}
+		img.resize {
+			max-width:50%;
+			max-height:50%;
+		} 
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+		
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin-right: 10px;
+        }
+		
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+		
+        .form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+		
+        .form-container h2 {
+            margin-top: 0;
+        }
+		
+        .form-container input[type=text], 
+        .form-container input[type=password] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+		
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+		
+		 .cart {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            position: fixed; /* Định vị giỏ hàng cố định */
+            top: 20px;
+            right: 20px;
+            display: none; /* Ẩn giỏ hàng ban đầu */
+			background-color: #45a049;
+			z-index: 999;
+			color: #fff;
+        }
+		
+        .cart-item {
+            margin-bottom: 10px;
+        }
+		
+    </style>
+	
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<img src="C:\xampp\htdocs\images\Phi Hung fashion shoe.png" alt="Logo">
+		</div>
+		
+		<h1>Phi Hung Fashion Shoe Store</h1>
+		<h1><input type="text" id="search" placeholder="Tìm kiếm...">
+	
+		<select id="filter">
+			<option value="all">All</option>
+			<option value="adidas">ADIDAS</option>
+			<option value="nike">NIKE</option>
+			<option value="puma">PUMA</option>
+			<option value="sale">SALE</option>
+		</select></h1>
+	
+		<nav>
+			<ul>
+				<li><a href="#home">Trang chủ</a></li>
+				<li><a href="#about">Giới thiệu</a></li>
+			
+			<li>
+				<a href="#contact">Liên hệ</a>
+				<ul class="submenu">
+				<li><a href="#address">Địa chỉ</a></li>
+				<li><a href="#email">Email</a></li>
+				<li><a href="#phone">Điện thoại</a></li>
+				</ul>
+			</li>
+			
+			<li>
+				<a href="#account">Tài khoản</a>
+				<ul class="submenu">
+				<li><a href="#log in"onclick="showLoginForm()">Đăng Nhập</a></li>
+				<li><a href="#register" onclick="showRegisterForm()">Đăng Ký</a></li>
+				</ul>
+			</li>
+		</nav>
+	
+	</header>
+		
+	<div class="overlay" id="overlay" onclick="hideForms()"></div>
+
+	<div class="form-container" id="loginForm">
+		<h2>Đăng Nhập</h2>
+		<input id="loginUsername" type="text" placeholder="Tên Đăng Nhập" required>
+		<input id="loginPassword"type="password" placeholder="Mật Khẩu" required>
+		<a href="#" onclick="showForgotPassword()">Quên mật khẩu?</a>
+		<br><button type="button" onclick="login()">Đăng nhập</button></br>
+	</div>
+
+	<div class="form-container" id="registerForm">
+		<h2>Đăng Ký</h2>
+		<input id="registerUsername" type="text" placeholder="Tên Đăng Ký" required>
+		<input id="registerEmail"  type="text"placeholder="Email" required>
+		<input id="registerPassword" type="password" placeholder="Mật Khẩu" required>
+		<button id="button" onclick="register()">Đăng Ký</button>
+	</div>
+
+    <section id="products">
+		<div class="product adidas">
+            <img src= "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4659ee058ba34bd2a5d0af500104c17d_9366/Giay_Campus_00s_DJen_HQ8708_01_standard.jpg"gaming.jfif alt="ADIDAS SAMBA OG" width="200" height="132"  >
+            <h3>ADIDAS CAMPUS 00S</h3>
+            <p> Giá 3.310.000 VND</p>
+            <br> <button  onclick="addToCart('ADIDAS CAMPUS 00S', 3310000)">Đặt mua</button></br>
+        </div>
+    
+		<div class="product nike">
+            <img src="https://supersports.com.vn/cdn/shop/files/FD9082-106-1_1200x1200.jpg?v=1709806783" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>NIKE AIR MAX 1 </h3>
+			<p> Giá: 2.120.000 VND </p>
+           <br> <button onclick="addToCart('NIKE AIR MAX 1S', 2120000)">Đặt mua</button>
+        </div>
+		
+		<div class="product adidas">
+            <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/3bbecbdf584e40398446a8bf0117cf62_9366/Giay_Samba_OG_trang_B75806_01_standard.jpg"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>ADIDAS SAMBA OG</h3>
+            <p> Giá: 1.830.000 VND </p>
+            <br><button onclick="addToCart('ADIDAS SAMBA OG', 1830000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product sale">
+            <img src="https://product.hstatic.net/200000078815/product/dv3853-401_01_68023e0292074354a0b77b4f1417cccd_master.jpg" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>NIKE PEGASUS 40 </h3>
+            <del style=color:#ff0000><p>Giá: 2.450.000 VND</p></del>
+			<p>Giá: 1.990.000 VND </p>
+            <br><button onclick="addToCart('NIKE PEGASUS 40 ', 1990000)">Đặt mua</button></br>
+        </div>
+		
+		 <div class="product puma">
+            <img src= "https://cany.vn/image/catalog/lpa/14823/Cali-Dream-Leather-Women's-Sneakers_75(4).jpg"gaming.jfif alt="ADIDAS SAMBA OG" width="200" height="132"  >
+            <h3>PUMA CALI LEADER</h3>
+            <p>Giá: 2.400.000 VND </p>
+            <br><button onclick="addToCart('PUMA CALI LEADER ', 2400000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product sale">
+            <img src= "https://supersports.com.vn/cdn/shop/files/DV6842-001-1_1200x1200.jpg?v=1696323676"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>NIKE AIR MAX SC SE </h3>
+            <del style=color:#ff0000><p>Giá: 1.950.000VND</p></del>
+			<p> Giá: 1.290.000 VND </p>
+            <br><button onclick="addToCart('NIKE AIR MAX SC SE ', 1290000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product adidas">
+            <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/2dda4a9720c14b7bb5e94aee68bda170_9366/Giay_X_PLR_Phase_trang_IG4767_01_standard.jpg"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>ADIDAS X_PLRPHASE </h3>
+			<p> Giá: 1.890.000 VND </p>
+            <br><button onclick="addToCart(' ADIDAS X_PLRPHASE', 1890000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product nike">
+            <img src="https://giaygiare.vn/upload/sanpham/air-force-1-low-07-lv8-pop-art-white.jpg" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>NIKE AIR FORCE 1 \'07 </h3>
+			<p> Giá: 2.600.000 VND </p>
+            <br><button onclick="addToCart(' NIKE AIR FORCE 1 \'07', 2600000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product nike">
+            <img src="https://myshoes.vn/image/catalog/2023/nike/nk011/giay-nike-air-max-systm-nam-trang-xanh-02.jpg" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>NIKE AIR MAX SYSTM </h3>
+			<p> Giá: 2.300.000 VND </p>
+            <br><button onclick="addToCart(' NIKE AIR MAX SYSTM', 2300000)">Đặt mua</button></br>
+        </div>
+		
+		 <div class="product puma">
+            <img src= "https://static.qns.digital/img/p/2/6/1/5/7/0/1/2615701-full_product.jpg"gaming.jfif alt="ADIDAS SAMBA OG" width="200" height="132"  >
+            <h3>PUMA CARINA STREET</h3>
+            <p> Giá: 2.750.000 VND </p>
+            <br><button onclick="addToCart(' PUMA CARINA STREET',2750000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product adidas">
+            <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/2d2249871d004e4e91c0af34014a7c8f_9366/Giay_Runfalcon_3_trang_HQ3789_01_standard.jpg"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>ADIDAS RUN FALCON 3.0 </h3>
+			<p>Giá: 3.400.000 VND </p>
+            <br><button onclick="addToCart('ADIDAS RUN FALCON 3.0 ',3400000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product puma">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRhIYkvEpqqdlm86ROLK-B1knLh_xHJuRIY2E1FAJLBg&s" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>PUMA LAMELO BALL MB.01</h3>
+			<p> Giá: 4.150.000 VND </p>
+            <br><button onclick="addToCart(' PUMA LAMELO BALL MB.01',4150000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product adidas">
+            <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6fca912f525949949449a8dd007bf0b5_9366/Prophere_Shoes_Grey_B37464_01_standard.jpg"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>ADIDAS PROPHERE GREY </h3>
+			<p> Giá: 3.500.000 VND </p>
+            <br><button onclick="addToCart('ADIDAS PROPHERE GREY ',3500000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product sale">
+            <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/c56c38c937fa45d7818c8d69ea2dee73_9366/Five_Ten_Trailcross_LT_Mountain_Bike_Shoes_Black_ID5010_01_standard.jpg"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>FIVE TRAILCROSS MOUNTAIN BIKE</h3>
+			<del style=color:#ff0000><p> Giá: 3.500.000VND</p></del>
+			<p> Giá: 2.990.000 VND </p>
+            <br><button onclick="addToCart(' FIVE TRAILCROSS MOUNTAIN BIKE',2990000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product sale">
+            <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6e1d447ab61142a09c40908cd6853c8f_9366/Giay_Racer_TR23_Be_ID7355_01_standard.jpg"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>ADIDAS RACER TR23</h3>
+			<del style=color:#ff0000> <p>Giá: 3.700.000VND</p></del>
+			<p> Giá: 3.390.000 VND </p>
+            <br><button onclick="addToCart(' ADIDAS RACER TR23',3390000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product puma">
+            <img src= "https://www.thenextsole.com/storage/images/399814-02.png"gaming.jfif alt="ADIDAS SAMBA OG" width="200" height="132"  >
+            <h3>PUMA FENTY PONY</h3>
+            <p> Giá: 3.799.000 VND </p>
+            <br><button onclick="addToCart(' PUMA FENTY PONY',3799000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product adidas">
+            <img src="https://kingshoes.vn/data/upload/media/hq1085-giay-adidas-five-ten-freerider-pro-mountain-bike-gia-tot-den-king-shoes-1.jpg"gaming.jfif alt="ảnh laptop" width="200" height="132" >
+            <h3>FREERIDER PRO \'GREY BRONZE STRATA</h3>
+			<p> Giá: 3.290.000 VND </p>
+            <br><button onclick="addToCart(' PFREERIDER PRO \'GREY BRONZE STRATA',3290000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product puma">
+            <img src="https://supersports.com.vn/cdn/shop/files/39652001-1_1200x1200.jpg?v=1711528745" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>PUMA SUEDE ONE PIECE</h3>
+			<p> Giá: 3.250.000 VND</p>
+            <br><button onclick="addToCart(' PUMA SUEDE ONE PIECE',3250000)">Đặt mua</button></br>
+        </div>
+		<div class="product nike">
+            <img src="https://supersports.com.vn/cdn/shop/files/DJ7883-005-1_1200x1200.jpg?v=1705395539"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>NIKE STRUCTURE 25</h3>
+			<p> Giá: 2.250.000 VND </p>
+            <br><button onclick="addToCart(' NIKE STRUCTURE 25',2250000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product adidas">
+            <img src="https://bizweb.dktcdn.net/thumb/grande/100/410/787/products/1-01-1715566458818.png?v=1715571590587" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>ADIDAS NMD R1 REFINED</h3>
+			<p> Giá: 1.500.000 VND </p>
+            <br><button onclick="addToCart(' ADIDAS NMD R1 REFINED',1500000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product nike">
+            <img src="https://giaygiare.vn/upload/sanpham/nike-air-force-1-07-white-butterfly-print-custom.jpg" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>AIR FORCE 1</h3>
+			<p> Giá: 1.750.000 VND</p>
+            <br><button onclick="addToCart(' AIR FORCE 1',1750000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product sale">
+            <img src="https://supersports.com.vn/cdn/shop/products/CZ1055-118-1_1024x1024.jpg?v=1678273523"gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>NIKE BLAZER MID \'77 VINTAGE </h3>
+			<del style=color:#ff0000>><p>Giá: 3.200.000 VND</p></del>
+			<p> Giá: 2.890.000 VND </p>
+            <br><button onclick="addToCart(' NIKE BLAZER MID ',2890000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product puma">
+            <img src="https://golfcity.com.vn/wp-content/uploads/2020/12/giay-golf-nam-puma-ignite-spikeless-lux1.jpg" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>PUMA IGNITE SPIKELESS</h3>
+			<p> Giá: 1.750.000 VND </p>
+            <br><button onclick="addToCart(' PUMA IGNITE SPIKELESS ',1750000)">Đặt mua</button></br>
+        </div>
+		
+		<div class="product sale">
+            <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a6a961cd3a54652b8d9ab09010cc671_9366/Five_Ten_Trailcross_LT_Mountain_Bike_Shoes_Black_FV4720_01_standard.jpg" gaming.jfif alt="ảnh laptop" width="200" height="132"  >
+            <h3>ADIDAS TRAIL CROSS LT </h3>
+			<del style=color:#ff0000> <p>Giá: 3.450.000 VND</p></del>
+			<p> Giá: 3.000.00 VND </p>
+            <br><button onclick="addToCart(' ADIDAS TRAIL CROSS LT ',3000000)">Đặt mua</button></br>
+        </div>
+		
+    </section>
+		<div class="cart" id="cart">
+			<h2>Giỏ hàng</h2>
+        <div id="cart-items">
+        </div>
+		<hr>
+        <div id="cart-total">
+            Tổng tiền: <span id="total">0.000.000</span> VND
+        </div>
+			<button onclick="checkout()">Thanh toán</button>
+		</div>
+	
+    <footer>
+        <p> 2024 Phi Hung Fashion Shoe Store. All rights reserved.</p>
+    </footer>
+	
+    <script>
+	  var cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name: name, price: price });
+            displayCart();
+        }
+
+        function displayCart() {
+            var cartItems = document.getElementById('cart-items');
+            var cartTotal = document.getElementById('total');
+            var cartHTML = '';
+            var total = 0;
+
+            for (var i = 0; i < cart.length; i++) {
+                cartHTML += '<div class="cart-item">' + cart[i].name + ' - '+ cart[i].price.toLocaleString() + ' VND</div>';
+                total += cart[i].price;
+            }
+
+            cartItems.innerHTML = cartHTML;
+            cartTotal.textContent = total;
+		
+            // Hiển thị giỏ hàng khi có sản phẩm
+            var cartDiv = document.getElementById('cart');
+            if (cart.length > 0) {
+                cartDiv.style.display = 'block';
+            } else {
+                cartDiv.style.display = 'none';
+            }
+        }
+
+        function checkout() {
+            alert('Thanh toán thành công!');
+            cart = [];
+            displayCart();
+        }
+		
+	function showLoginForm() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'block';
+    }
+
+    function showRegisterForm() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'block';
+    }
+
+    function hideForms() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'none';
+    }
+	
+    function login() {
+        // Thực hiện các hành động khi người dùng click vào nút Đăng Nhập
+        document.getElementById('loginUsername').value = ''; // Xóa giá trị tên đăng nhập
+        document.getElementById('loginPassword').value = ''; // Xóa giá trị mật khẩu
+        hideForms(); // Ẩn form đăng nhập
+    }
+
+    function register() {
+        // Thực hiện các hành động khi người dùng click vào nút Đăng Ký
+        document.getElementById('registerUsername').value = ''; // Xóa giá trị tên đăng ký
+        document.getElementById('registerEmail').value = ''; // Xóa giá trị email
+        document.getElementById('registerPassword').value = ''; // Xóa giá trị mật khẩu
+        hideForms(); // Ẩn form đăng ký
+    }
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const filterSelect = document.getElementById('filter');
+            const products = document.querySelectorAll('.product');
+            const cart = [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutButton = document.getElementById('checkout');
+
+            // Event listener for search input and filter select
+            searchInput.addEventListener('input', filterProducts);
+            filterSelect.addEventListener('change', filterProducts);
+
+            // Function to filter products based on search and filter criteria
+            function filterProducts() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const categoryFilter = filterSelect.value;
+
+                products.forEach(product => {
+                    const productName = product.querySelector('h3').textContent.toLowerCase();
+                    const productCategory = product.classList.contains(categoryFilter) || categoryFilter === 'all';
+
+                    if (productName.includes(searchTerm) && productCategory) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+
+
+        function scrollFunction() {
+            var cartDiv = document.getElementById('cart');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                cartDiv.style.top = '50px'; // Ð?t v? trí c?a gi? hàng khi cu?n
+            } else {
+                cartDiv.style.top = '20px'; // Ð?t l?i v? trí khi ? trên d?u trang
+            }
+        }
+		window.addEventListener('click', function(event) {
+            if (!cartDiv.contains(event.target) && event.target.getAttribute('id') !== 'show-cart') {
+                cartDiv.classList.remove('active');
+            }
+        });
+        });
+		
+	</script>
+</body>
+</html>
